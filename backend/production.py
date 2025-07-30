@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 
 app = FastAPI(
-    title="北美市场洞察工具",
+    title="市场洞察工具",
     description="AI驱动的市场分析平台",
     version="1.0.0"
 )
@@ -32,7 +32,7 @@ task_status = {}
 async def root():
     """健康检查端点"""
     return {
-        "message": "北美市场洞察工具 API", 
+        "message": "市场洞察工具 API", 
         "status": "running",
         "version": "1.0.0",
         "environment": "production"
