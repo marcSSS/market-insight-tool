@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北美市场洞察工具 - 开始分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <h1 class="text-2xl font-bold text-blue-600">北美市场洞察工具</h1>
+                    <nav class="flex space-x-8">
+                        <a href="test.html" class="text-gray-700 hover:text-blue-600">首页</a>
+                        <a href="analyze.html" class="text-blue-600 font-semibold">开始分析</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    市场洞察分析
+                </h2>
+                <p class="text-xl text-gray-600">
+                    输入任意网址，我们的AI将为您提供深度的市场分析报告
+                </p>
+            </div>
+
+            <!-- Analysis Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <form id="analysisForm" class="space-y-8">
+                    <!-- URL Input -->
+                    <div>
+                        <label for="url" class="block text-sm font-medium text-gray-700 mb-2">
+                            要分析的网址
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input
+                                type="url"
+                                id="url"
+                                name="url"
+                                placeholder="https://example.com"
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                required
+                            />
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500">
+                            请输入完整的网址，包括 http:// 或 https://
+                        </p>
+                    </div>
+
+                    <!-- Analysis Type Selection -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-4">
+                            选择分析类型
+                        </label>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="analysis-type-option relative p-4 border-2 rounded-lg cursor-pointer transition-colors border-blue-500 bg-blue-50" data-type="full">
+                                <div class="flex items-start space-x-3">
+                                    <div class="p-2 rounded-lg bg-blue-500 text-white">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-gray-900">完整分析</h3>
+                                        <p class="text-sm text-gray-600 mt-1">市场趋势、用户画像和竞争分析</p>
+                                    </div>
+                                    <div class="absolute top-2 right-2">
+                                        <div class="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-type-option relative p-4 border-2 rounded-lg cursor-pointer transition-colors border-gray-200 hover:border-gray-300" data-type="market">
+                                <div class="flex items-start space-x-3">
+                                    <div class="p-2 rounded-lg bg-green-500 text-white">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-gray-900">市场趋势分析</h3>
+                                        <p class="text-sm text-gray-600 mt-1">市场规模、CAGR和关键驱动因素</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-type-option relative p-4 border-2 rounded-lg cursor-pointer transition-colors border-gray-200 hover:border-gray-300" data-type="user">
+                                <div class="flex items-start space-x-3">
+                                    <div class="p-2 rounded-lg bg-purple-500 text-white">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-gray-900">用户画像分析</h3>
+                                        <p class="text-sm text-gray-600 mt-1">目标用户群体和需求痛点</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-type-option relative p-4 border-2 rounded-lg cursor-pointer transition-colors border-gray-200 hover:border-gray-300" data-type="competitor">
+                                <div class="flex items-start space-x-3">
+                                    <div class="p-2 rounded-lg bg-orange-500 text-white">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-gray-900">竞争分析</h3>
+                                        <p class="text-sm text-gray-600 mt-1">竞争对手和竞争格局分析</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-6">
+                        <button
+                            type="submit"
+                            id="submitBtn"
+                            class="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                        >
+                            <span id="submitText">开始分析</span>
+                            <svg id="loadingIcon" class="hidden ml-2 animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Features Preview -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">分析内容预览</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="inline-flex p-3 rounded-full bg-blue-100 text-blue-600 mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 mb-2">市场趋势</h3>
+                        <p class="text-sm text-gray-600">
+                            市场规模、增长率、驱动因素、行业趋势
+                        </p>
+                    </div>
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="inline-flex p-3 rounded-full bg-green-100 text-green-600 mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 mb-2">用户画像</h3>
+                        <p class="text-sm text-gray-600">
+                            目标用户、需求痛点、行为模式、人口特征
+                        </p>
+                    </div>
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="inline-flex p-3 rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 mb-2">竞争分析</h3>
+                        <p class="text-sm text-gray-600">
+                            竞争对手、竞争格局、产品对比、营销策略
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progressSection" class="hidden mt-8 bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">分析进度</h2>
+                <div id="progressContent" class="space-y-6">
+                    <!-- Progress will be populated here -->
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="hidden mt-8 bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">分析结果</h2>
+                <div id="resultsContent" class="space-y-6">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 分析类型选择
+        document.querySelectorAll('.analysis-type-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // 移除所有选中状态
+                document.querySelectorAll('.analysis-type-option').forEach(opt => {
+                    opt.classList.remove('border-blue-500', 'bg-blue-50');
+                    opt.classList.add('border-gray-200');
+                    const checkmark = opt.querySelector('.absolute');
+                    if (checkmark) checkmark.remove();
+                });
+                
+                // 添加选中状态
+                this.classList.remove('border-gray-200');
+                this.classList.add('border-blue-500', 'bg-blue-50');
+                
+                // 添加选中标记
+                const checkmark = document.createElement('div');
+                checkmark.className = 'absolute top-2 right-2';
+                checkmark.innerHTML = '<div class="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-white rounded-full"></div></div>';
+                this.appendChild(checkmark);
+            });
+        });
+
+        // 表单提交
+        document.getElementById('analysisForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('url').value.trim();
+            const selectedType = document.querySelector('.analysis-type-option.border-blue-500')?.dataset.type || 'full';
+            
+            if (!url) {
+                alert('请输入要分析的网址');
+                return;
+            }
+
+            // 验证URL格式
+            try {
+                new URL(url);
+            } catch {
+                alert('请输入有效的网址');
+                return;
+            }
+
+            // 显示加载状态
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingIcon = document.getElementById('loadingIcon');
+            
+            submitBtn.disabled = true;
+            submitText.textContent = '分析中...';
+            loadingIcon.classList.remove('hidden');
+
+            try {
+                // 调用后端API
+                const response = await axios.post('http://localhost:8000/api/analyze', {
+                    url: url,
+                    analysis_type: selectedType
+                });
+
+                if (response.data.task_id) {
+                    // 显示进度监控
+                    showProgress(response.data.task_id, url, selectedType);
+                    // 开始监控进度
+                    monitorProgress(response.data.task_id);
+                } else {
+                    throw new Error('启动分析任务失败');
+                }
+            } catch (error) {
+                console.error('Analysis error:', error);
+                showResults({
+                    status: 'error',
+                    message: error.response?.data?.detail || '分析请求失败，请稍后重试',
+                    url: url
+                });
+            } finally {
+                // 恢复按钮状态
+                submitBtn.disabled = false;
+                submitText.textContent = '开始分析';
+                loadingIcon.classList.add('hidden');
+            }
+        });
+
+        // 显示进度
+        function showProgress(taskId, url, analysisType) {
+            const progressSection = document.getElementById('progressSection');
+            const progressContent = document.getElementById('progressContent');
+            
+            const html = `
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-blue-800">分析进行中</h3>
+                        <div class="text-sm text-blue-600">任务ID: ${taskId}</div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>分析网址: ${url}</span>
+                            <span>分析类型: ${getAnalysisTypeName(analysisType)}</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="progressBar" class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600 mt-2">
+                            <span id="progressText">正在初始化...</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            progressContent.innerHTML = html;
+            progressSection.classList.remove('hidden');
+            
+            // 滚动到进度区域
+            progressSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 监控进度
+        async function monitorProgress(taskId) {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            const checkProgress = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:8000/api/analysis/${taskId}`);
+                    const data = response.data;
+                    
+                    if (data.status === 'processing') {
+                        // 更新进度
+                        const progress = data.progress || 0;
+                        progressBar.style.width = `${progress}%`;
+                        progressPercent.textContent = `${progress}%`;
+                        progressText.textContent = data.message || '正在分析...';
+                        
+                        // 继续监控
+                        setTimeout(checkProgress, 1000);
+                    } else if (data.status === 'completed') {
+                        // 分析完成，显示结果
+                        progressBar.style.width = '100%';
+                        progressPercent.textContent = '100%';
+                        progressText.textContent = '分析完成！';
+                        
+                        // 显示详细结果
+                        showDetailedResults(data);
+                    }
+                } catch (error) {
+                    console.error('Progress check error:', error);
+                    progressText.textContent = '检查进度时出错';
+                }
+            };
+            
+            // 开始监控
+            checkProgress();
+        }
+
+        // 显示详细结果
+        function showDetailedResults(data) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContent = document.getElementById('resultsContent');
+            
+            const result = data.result;
+            
+            const html = `
+                <div class="space-y-8">
+                    <!-- 分析摘要 -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">分析摘要</h3>
+                        <p class="text-gray-700 leading-relaxed">${result.summary}</p>
+                    </div>
+
+                    <!-- 市场趋势 -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <svg class="h-6 w-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            市场趋势分析
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">市场规模</h4>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm text-gray-600">当前规模</span>
+                                        <span class="font-bold text-blue-600">${result.market_trends.market_size.current}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm text-gray-600">2025年预测</span>
+                                        <span class="font-bold text-green-600">${result.market_trends.market_size.forecast_2025}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">年复合增长率</span>
+                                        <span class="font-bold text-purple-600">${result.market_trends.cagr}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">关键驱动因素</h4>
+                                <div class="space-y-2">
+                                    ${result.market_trends.key_drivers.map(driver => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                            <span>${driver}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">行业趋势</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${result.market_trends.industry_trends.map(trend => 
+                                    `<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">${trend}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 用户画像 -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <svg class="h-6 w-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                            用户画像分析
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">目标用户群体</h4>
+                                <div class="space-y-2">
+                                    ${result.user_profile.target_audience.map(audience => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                            <span>${audience}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">用户需求</h4>
+                                <div class="space-y-2">
+                                    ${result.user_profile.user_needs.map(need => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                            <span>${need}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">痛点分析</h4>
+                                <div class="space-y-2">
+                                    ${result.user_profile.pain_points.map(pain => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                            <span>${pain}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 竞争分析 -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <svg class="h-6 w-6 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                            竞争分析
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">主要竞争对手</h4>
+                                <div class="space-y-2">
+                                    ${result.competitor_analysis.competitors.map(competitor => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
+                                            <span>${competitor}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">竞争优势</h4>
+                                <div class="space-y-2">
+                                    ${result.competitor_analysis.competitive_advantages.map(advantage => 
+                                        `<div class="flex items-center text-sm">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                            <span>${advantage}</span>
+                                        </div>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">市场定位</h4>
+                            <p class="text-gray-700 bg-gray-50 rounded-lg p-3">${result.competitor_analysis.market_positioning}</p>
+                        </div>
+                    </div>
+
+                    <!-- 建议 -->
+                    <div class="border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <svg class="h-6 w-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            战略建议
+                        </h3>
+                        <div class="space-y-3">
+                            ${result.recommendations.map((recommendation, index) => 
+                                `<div class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">
+                                        ${index + 1}
+                                    </div>
+                                    <p class="text-gray-700">${recommendation}</p>
+                                </div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsContent.innerHTML = html;
+            resultsSection.classList.remove('hidden');
+            
+            // 滚动到结果区域
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 显示结果（错误处理）
+        function showResults(data) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContent = document.getElementById('resultsContent');
+            
+            const html = `
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">分析失败</h3>
+                            <div class="mt-2 text-sm text-red-700">
+                                <p>${data.message}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsContent.innerHTML = html;
+            resultsSection.classList.remove('hidden');
+            
+            // 滚动到结果区域
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 获取分析类型名称
+        function getAnalysisTypeName(type) {
+            const types = {
+                'full': '完整分析',
+                'market': '市场趋势分析',
+                'user': '用户画像分析',
+                'competitor': '竞争分析'
+            };
+            return types[type] || type;
+        }
+    </script>
+</body>
+</html> 
