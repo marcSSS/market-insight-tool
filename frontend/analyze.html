@@ -253,7 +253,7 @@
         document.getElementById('analysisForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const url = document.getElementById('url').value.trim();
+            let url = document.getElementById('url').value.trim();
             const selectedType = document.querySelector('.analysis-type-option.border-blue-500')?.dataset.type || 'full';
             
             if (!url) {
