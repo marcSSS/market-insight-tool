@@ -17,38 +17,34 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://market-insight-tool-production-xxxx.up.railway.app/api/$1"
+      "dest": "https://market-insight-tool-production.up.railway.app/api/$1"
     },
     {
       "src": "/analyze",
-      "dest": "/frontend/analyze.html"
+      "dest": "/frontend/analyze.html",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/test",
-      "dest": "/frontend/test.html"
+      "dest": "/frontend/test.html",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "dest": "/frontend/$1",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block"
+      }
     }
   ]
 } 
