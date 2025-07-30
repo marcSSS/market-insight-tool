@@ -15,7 +15,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://your-frontend-domain.vercel.app",  # 替换为您的域名
+        "https://market-insight-tool.vercel.app",  # Vercel域名
+        "https://market-insight-tool-be7lq85ov-marcs-projects-794138a8.vercel.app",  # Vercel预览域名
         "http://localhost:3000",  # 本地开发
         "http://localhost:3001",
     ],
