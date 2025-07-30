@@ -257,8 +257,8 @@
             loadingIcon.classList.remove('hidden');
 
             try {
-                // 调用后端API
-                const response = await axios.post('https://market-insight-tool-production.up.railway.app/api/analyze', {
+                // 调用后端API (通过Vercel代理)
+                const response = await axios.post('/api/analyze', {
                     url: url,
                     analysis_type: selectedType
                 });
@@ -328,7 +328,7 @@
             
             const checkProgress = async () => {
                 try {
-                    const response = await axios.get(`https://market-insight-tool-production.up.railway.app/api/analysis/${taskId}`);
+                    const response = await axios.get(`/api/analysis/${taskId}`);
                     const data = response.data;
                     
                     if (data.status === 'processing') {
