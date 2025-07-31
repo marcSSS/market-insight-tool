@@ -481,7 +481,7 @@
             try {
                 console.log('Submitting analysis request:', { url, analysis_type: selectedType });
                 // 调用后端API
-                const response = await axios.post('http://localhost:8000/api/analyze', {
+                const response = await axios.post('/api/analyze', {
                     url: url,
                     analysis_type: selectedType
                 });
@@ -558,7 +558,7 @@
             const checkProgress = async () => {
                 try {
                     console.log(`Checking progress for task: ${taskId}`);
-                    const response = await axios.get(`http://localhost:8000/api/analysis/${taskId}`);
+                    const response = await axios.get(`/api/analysis/${taskId}`);
                     const data = response.data;
                     console.log('Progress response:', data);
                     
@@ -609,7 +609,7 @@
                     } else {
                         // 如果重试次数用完，尝试最后一次获取结果
                         try {
-                            const finalResponse = await axios.get(`http://localhost:8000/api/analysis/${taskId}`);
+                            const finalResponse = await axios.get(`/api/analysis/${taskId}`);
                             const finalData = finalResponse.data;
                             
                             if (finalData.status === 'completed' && finalData.result) {

@@ -796,7 +796,7 @@
             
             try {
                 // 调用后端API
-                const response = await axios.post('http://localhost:8000/api/analyze', {
+                const response = await axios.post('/api/analyze', {
                     url: url,
                     analysis_type: selectedType
                 });
@@ -838,7 +838,7 @@
             
             const checkProgress = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8000/api/analysis/${taskId}`);
+                    const response = await axios.get(`/api/analysis/${taskId}`);
                     const data = response.data;
                     
                     // 更新进度
