@@ -1,172 +1,146 @@
-# 🚀 北美市场洞察工具
+# Insight.AI - AI驱动的市场分析平台
 
-一个基于AI的智能市场分析平台，帮助用户快速分析任意网站的市场趋势、用户画像和竞争格局。
+一个现代化的AI市场分析工具，提供深度市场趋势、用户画像和竞争分析。
 
-## ✨ 核心功能
+## 🎨 设计理念
 
-- 🔍 **智能网站分析**: 输入任意URL，自动分析网站内容
-- 📊 **市场趋势分析**: 市场规模、CAGR、关键驱动因素
-- 👥 **用户画像分析**: 目标用户、需求痛点、行为特征
-- 🏆 **竞争分析**: 竞争对手分析、优势劣势对比
-- 📈 **实时进度**: 动态显示分析进度
-- 📋 **详细报告**: 结构化的分析结果展示
+采用美国新创公司的现代化设计风格：
+- **专业简洁** - 清晰的视觉层次和专业的配色方案
+- **创新体验** - 渐变色彩、微交互动画和响应式设计
+- **用户友好** - 直观的导航和流畅的用户体验
+
+## 🚀 功能特性
+
+### 核心分析能力
+- **市场趋势分析** - 市场规模、CAGR、关键驱动因素
+- **用户画像分析** - 目标用户、需求痛点、行为模式
+- **竞争分析** - 竞争对手、竞争格局、产品对比
+
+### 分析版本
+- **基础分析** - 完整的市场分析报告
+- **增强分析** - 包含战略建议和详细洞察的深度分析
 
 ## 🛠️ 技术栈
 
-- **后端**: FastAPI (Python)
-- **前端**: HTML + JavaScript + Tailwind CSS
-- **部署**: Vercel (前端) + Railway (后端)
-- **AI**: OpenAI API (计划集成)
+### 前端
+- **HTML5** - 语义化标记
+- **Tailwind CSS** - 现代化CSS框架
+- **JavaScript** - 交互逻辑
+- **Axios** - HTTP客户端
+
+### 后端
+- **FastAPI** - 高性能Python Web框架
+- **Uvicorn** - ASGI服务器
+- **Python** - 核心分析引擎
+
+### 部署
+- **Vercel** - 前端托管
+- **Railway** - 后端托管
+- **Docker** - 容器化部署
+
+## 📁 项目结构
+
+```
+practice/
+├── frontend/
+│   ├── test.html              # 首页 - 现代化landing page
+│   ├── analyze.html           # 基础分析页面
+│   └── analyze_enhanced.html  # 增强分析页面
+├── backend/
+│   ├── production.py          # 生产环境服务器
+│   ├── analysis_engine.py     # AI分析引擎
+│   ├── data_serializer.py     # 数据序列化工具
+│   └── test_enhanced_analysis.py # 测试脚本
+├── README.md                  # 项目文档
+└── start-simple.sh           # 快速启动脚本
+```
+
+## 🎯 设计系统
+
+### 色彩方案
+- **主色调** - 蓝色渐变 (#3b82f6 → #8b5cf6)
+- **辅助色** - 绿色 (#10b981)、紫色 (#8b5cf6)
+- **中性色** - 灰色系列 (#f8fafc → #1f2937)
+
+### 组件样式
+- **按钮** - 渐变背景、圆角、悬停动画
+- **卡片** - 白色背景、阴影、悬停效果
+- **导航** - 毛玻璃效果、粘性定位
+- **进度条** - 渐变填充、平滑动画
+
+### 响应式设计
+- **移动端优先** - 适配各种屏幕尺寸
+- **断点系统** - sm(640px)、md(768px)、lg(1024px)
+- **弹性布局** - Grid和Flexbox布局
 
 ## 🚀 快速开始
 
 ### 本地开发
 
-1. **克隆仓库**
-```bash
-git clone https://github.com/your-username/market-insight-tool.git
-cd market-insight-tool
-```
-
-2. **启动后端**
+1. **启动后端服务**
 ```bash
 cd backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python test_server_fixed.py
+source venv/bin/activate
+python production.py
 ```
 
-3. **启动前端**
+2. **启动前端服务**
 ```bash
 cd frontend
 python3 -m http.server 3000
 ```
 
-4. **访问应用**
-- 前端: http://localhost:3000/analyze.html
-- 后端API: http://localhost:8000
-- API文档: http://localhost:8000/docs
+3. **访问应用**
+- 首页: http://localhost:3000/test.html
+- 基础分析: http://localhost:3000/analyze.html
+- 增强分析: http://localhost:3000/analyze_enhanced.html
 
 ### 生产部署
 
-#### 方案一：Vercel + Railway (推荐)
-
-1. **部署后端到Railway**
-   - 注册 [Railway](https://railway.app)
-   - 连接GitHub仓库
-   - 自动部署完成
-
-2. **部署前端到Vercel**
-   - 注册 [Vercel](https://vercel.com)
-   - 连接GitHub仓库
-   - 自动部署完成
-
-3. **配置环境变量**
-   - 在Railway中设置后端环境变量
-   - 在Vercel中更新API地址
-
-#### 方案二：Docker部署
-
+使用提供的部署脚本：
 ```bash
-# 构建并运行
-docker-compose -f docker-compose.prod.yml up -d
-
-# 访问应用
-http://localhost
+./start-simple.sh
 ```
 
-## 📁 项目结构
+## 📱 用户体验
 
-```
-market-insight-tool/
-├── backend/                 # 后端API服务
-│   ├── production.py       # 生产环境配置
-│   ├── test_server_fixed.py # 开发测试服务器
-│   └── requirements.txt    # Python依赖
-├── frontend/               # 前端静态文件
-│   ├── analyze.html       # 主分析页面
-│   ├── test.html          # 测试页面
-│   └── ...                # 其他静态资源
-├── vercel.json            # Vercel配置
-├── railway.json           # Railway配置
-├── docker-compose.prod.yml # Docker生产配置
-├── Dockerfile             # Docker镜像配置
-└── deploy.sh              # 部署脚本
-```
+### 导航流程
+1. **首页** - 了解产品功能和特性
+2. **选择版本** - 基础分析或增强分析
+3. **输入URL** - 支持多种格式的智能输入
+4. **实时进度** - 动态进度条和状态更新
+5. **查看结果** - 结构化的分析报告
 
-## 🔧 API接口
+### 交互特性
+- **智能URL处理** - 自动添加协议和www前缀
+- **实时进度监控** - 动态进度条和重试机制
+- **响应式布局** - 适配桌面和移动设备
+- **微交互动画** - 按钮悬停、卡片阴影效果
 
-### 分析接口
+## 🔧 开发指南
 
-**POST** `/api/analyze`
-```json
-{
-  "url": "https://example.com",
-  "analysis_type": "full"
-}
-```
+### 代码规范
+- **HTML** - 语义化标签、无障碍访问
+- **CSS** - Tailwind工具类、组件化样式
+- **JavaScript** - ES6+语法、模块化组织
 
-**GET** `/api/analysis/{task_id}`
-```json
-{
-  "task_id": "uuid",
-  "status": "completed",
-  "progress": 100,
-  "result": {
-    "market_trends": {...},
-    "user_profile": {...},
-    "competitor_analysis": {...}
-  }
-}
-```
+### 性能优化
+- **CDN资源** - Tailwind CSS和Axios
+- **图片优化** - SVG图标、响应式图片
+- **代码分割** - 按需加载、懒加载
 
-### 健康检查
+## 📈 未来规划
 
-**GET** `/health`
-```json
-{
-  "status": "healthy",
-  "timestamp": "2024-01-01T00:00:00",
-  "environment": "production"
-}
-```
-
-## 🎯 使用示例
-
-1. **访问分析页面**: https://your-app.vercel.app/analyze
-2. **输入网站URL**: 例如 `https://www.apple.com`
-3. **选择分析类型**: 完整分析、市场分析、用户分析、竞争分析
-4. **查看实时进度**: 动态进度条显示分析状态
-5. **获取分析结果**: 详细的市场洞察报告
-
-## 🔮 计划功能
-
-- [ ] 真实AI分析集成 (OpenAI API)
-- [ ] 用户认证系统
-- [ ] 分析历史记录
-- [ ] PDF报告导出
-- [ ] 多语言支持
-- [ ] 移动端优化
+- [ ] 更多分析维度
+- [ ] 数据可视化图表
+- [ ] 用户账户系统
+- [ ] 历史报告管理
+- [ ] API文档完善
 
 ## 🤝 贡献指南
 
-1. Fork 项目
-2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
+欢迎提交Issue和Pull Request来改进项目！
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
-## 📞 联系我们
-
-- **项目地址**: https://github.com/your-username/market-insight-tool
-- **问题反馈**: https://github.com/your-username/market-insight-tool/issues
-- **邮箱**: support@your-domain.com
-
----
-
-⭐ 如果这个项目对您有帮助，请给我们一个星标！ 
+MIT License - 详见LICENSE文件 
